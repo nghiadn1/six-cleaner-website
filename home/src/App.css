@@ -1,0 +1,268 @@
+/* File: src/styles/custom.css */
+
+:root {
+  --my-green: #6c9e5e;
+  --my-light-gray: #f8f9fa;
+  --my-border-color: #dee2e6;
+  --my-text-muted: #6c757d;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+/* --- Main Layout --- */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--my-light-gray);
+}
+
+.main-form-container-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--my-light-gray);
+}
+
+.main-form-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  margin: auto;
+
+  /* Xoá các thuộc tính làm nền trắng */
+  background-color: transparent;
+  /* hoặc bỏ dòng này */
+  box-shadow: none;
+  border-radius: 0;
+}
+
+
+/* --- Header / Footer --- */
+.navbar {
+  border-bottom: 1px solid var(--my-border-color);
+}
+
+.navbar-brand .form-title {
+  color: var(--my-green) !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: var(--my-text-muted);
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--my-green) !important;
+}
+
+.navbar .btn-success {
+  background-color: var(--my-green) !important;
+  border-color: var(--my-green) !important;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+}
+
+.custom-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--my-green);
+  border-top: 1px solid var(--my-border-color);
+  background-color: white;
+}
+
+/* --- Form Specific Styles --- */
+.form-logo {
+  height: 40px;
+  width: 40px;
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.form-subtitle {
+  color: var(--my-text-muted);
+  font-size: 0.95rem;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+
+.google-icon-button {
+  width: 32px;
+  height: 32px;
+  padding: 0 !important;
+  border-radius: 0.5rem !important;
+  border: 1px solid var(--my-border-color);
+  background-color: white !important;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.google-icon-button:hover {
+  background-color: var(--my-light-gray) !important;
+  border-color: #adb5bd !important;
+}
+
+.google-icon-button-img {
+  height: 20px;
+  width: 20px;
+  margin: 0 !important;
+}
+
+.form-divider-text {
+  position: relative;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: var(--my-text-muted);
+  font-size: 0.85rem;
+}
+
+.form-divider-text::before,
+.form-divider-text::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background-color: var(--my-border-color);
+}
+
+.form-divider-text::before {
+  left: 0;
+}
+
+.form-divider-text::after {
+  right: 0;
+}
+
+/* Input Fields */
+.form-control {
+  border-radius: 1.5rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--my-border-color);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.form-control:focus {
+  border-color: var(--my-green);
+  box-shadow: 0 0 0 0.25rem rgba(108, 158, 94, 0.25);
+}
+
+/* Row chứa 2 input đầu (Họ tên & SĐT) */
+.double-inputs {
+  margin-bottom: 0.75rem;
+}
+
+.double-inputs .form-control {
+  margin-bottom: 0;
+  /* Gỡ khoảng cách dưới mỗi input */
+}
+
+/* Input Group (Password + Eye icon) */
+.input-group {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.input-group .form-control {
+  flex-grow: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  z-index: 1;
+  margin-bottom: 0;
+}
+
+.input-group .form-control.rounded-end-0 {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.password-toggle-btn {
+  background-color: var(--my-light-gray);
+  border: 1px solid var(--my-border-color);
+  color: var(--my-text-muted);
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-toggle-btn:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+/* Submit Button */
+.btn-success.submit-btn {
+  background-color: var(--my-green) !important;
+  border-color: var(--my-green) !important;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 1.5rem;
+}
+
+.btn-success.submit-btn:hover {
+  background-color: #5a854d !important;
+  border-color: #5a854d !important;
+}
+
+/* Links */
+.form-link {
+  color: var(--my-green) !important;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.form-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 767.98px) {
+
+  .form-divider-text::before,
+  .form-divider-text::after {
+    width: 30%;
+  }
+
+  .main-form-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .form-logo {
+    height: 36px;
+    width: 36px;
+  }
+
+  .btn-success.submit-btn {
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* cutomer css */
