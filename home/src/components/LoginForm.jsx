@@ -1,50 +1,50 @@
-import React, { useState } from 'react';
-import { Form, Button, InputGroup } from 'react-bootstrap';
-import { Eye, EyeSlash } from 'react-bootstrap-icons';
-import { useNavigate } from 'react-router-dom';
-import axios from '../axios'; // đường dẫn tùy theo dự án của bạn
+import React, { useState } from "react";
+import { Form, Button, InputGroup } from "react-bootstrap";
+import { Eye, EyeSlash } from "react-bootstrap-icons";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../Context/AuthContext"; // ← Đảm bảo đúng path
+import axios from "../axios"; // ← Đảm bảo đúng path
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
+  const { login } = useAuth(); // ← Dùng context để cập nhật user
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log('🚀 Gửi dữ liệu đăng nhập:', formData);
+      await axios.get("/sanctum/csrf-cookie");
+      const res = await axios.post("/api/auth/login", formData);
 
-      await axios.get('/sanctum/csrf-cookie');
-      const res = await axios.post('/api/auth/login', formData);
-
+      // Gán ảnh avatar tạm nếu chưa có từ server
       const userWithAvatar = {
         ...res.data.user,
         image: res.data.user.image || "https://i.ibb.co/99z3F7Wr/avatar.jpg",
       };
 
-      localStorage.setItem('access_token', res.data.access_token);
-      localStorage.setItem('user', JSON.stringify(userWithAvatar));
+      // Lưu localStorage và context
+      localStorage.setItem("access_token", res.data.access_token);
+      localStorage.setItem("user", JSON.stringify(userWithAvatar));
+      login(userWithAvatar); // ← Gọi login từ context để cập nhật UI
 
-      alert('Đăng nhập thành công!');
-      navigate('/');
+      alert("Đăng nhập thành công!");
+      navigate("/");
     } catch (error) {
-      console.error('Lỗi đăng nhập:', error.response?.data || error.message);
-      setErrorMessage(
-        error.response?.data?.message || 'Đăng nhập thất bại!'
-      );
+      console.error("Lỗi đăng nhập:", error.response?.data || error.message);
+      alert("Đăng nhập thất bại!");
     }
   };
 
@@ -56,7 +56,7 @@ const LoginForm = () => {
         <Button
           variant="outline-secondary"
           className="google-icon-button d-flex align-items-center justify-content-center"
-          onClick={() => console.log('Google login clicked')}
+          onClick={() => console.log("Google login clicked")}
         >
           <img
             src="/images/google-icon.png"
@@ -82,7 +82,6 @@ const LoginForm = () => {
           placeholder="Email của bạn"
           value={formData.email}
           onChange={handleChange}
-          required
         />
       </Form.Group>
 
@@ -90,12 +89,11 @@ const LoginForm = () => {
       <Form.Group className="mb-4" controlId="loginPassword">
         <InputGroup>
           <Form.Control
-            type={showPassword ? 'text' : 'password'}
+            type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Mật khẩu"
             value={formData.password}
             onChange={handleChange}
-            required
           />
           <Button
             variant="outline-secondary"
@@ -106,13 +104,6 @@ const LoginForm = () => {
           </Button>
         </InputGroup>
       </Form.Group>
-
-      {/* Hiển thị lỗi */}
-      {errorMessage && (
-        <div className="text-danger mb-3 small">
-          ⚠ {errorMessage}
-        </div>
-      )}
 
       {/* Nút đăng nhập */}
       <Button variant="success" type="submit" className="w-100 py-2 submit-btn">

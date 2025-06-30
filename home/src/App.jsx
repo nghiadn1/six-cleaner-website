@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import RegisterPage from './pages/RegisterPage.jsx';
-import LoginPage from './pages/LoginPage.jsx';
+import RegisterPage from "./pages/RegisterPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 import About from "./pages/About";
 import Partner from "./pages/Partner";
 import News from "./pages/News";
@@ -16,14 +16,14 @@ import WashingService from "./services/WashingService";
 import CarpetService from "./services/CarpetService";
 import MattressService from "./services/MattressService";
 import Information from "./order/Information";
-import HouseServiceDetail from "./order/HouseServiceDetail";  // ✅ dùng đúng tên route
-import PaymentPage from "./order/PaymentPage"
-import BookingHistory from './History/BookingHistory.jsx';
-import ProfilePage from './pages/ProfilePage';
+import HouseServiceDetail from "./order/HouseServiceDetail";
+import PaymentPage from "./order/PaymentPage";
+import BookingHistory from "./History/BookingHistory.jsx";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -47,7 +47,7 @@ function App() {
         <Route path="/ho-so-ca-nhan" element={<ProfilePage />} />
       </Routes>
       <Footer />
-    </Router>
+    </>
   );
 }
 

@@ -76,8 +76,6 @@ $user = User::create([
     'province_id'       => $request->province_id,
     'district_id'       => $request->district_id,
     'ward_id'           => $request->ward_id,
-    'region_id'         => $request->region_id ?? null,             // nếu có dùng
-    'customer_level_id' => $request->customer_level_id ?? null,     // nếu có dùng
 ]);
             \Log::info('🔥 Người dùng tạo: ', $user->toArray());
             return response()->json([

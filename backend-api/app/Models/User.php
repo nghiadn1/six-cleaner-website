@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(CustomerLevel::class, 'customer_level_id');
     }
+    public function setPasswordAttribute($value)
+{
+    $this->attributes['password_hash'] = bcrypt($value);
+}
+
 }
