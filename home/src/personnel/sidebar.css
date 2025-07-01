@@ -1,0 +1,27 @@
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: #e7f1ff;
+    color: #0d6efd;
+}
+
+.bg-light-success {
+    background-color: #eafaf1 !important;
+}
+
+.bg-light-warning {
+    background-color: #fff8e6 !important;
+}
+
+.bg-light-secondary {
+    background-color: #f0f2f5 !important;
+}
+
+.bg-light-danger {
+    background-color: #fdecea !important;
+}

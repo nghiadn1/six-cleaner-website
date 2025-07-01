@@ -1,9 +1,12 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+// Component chung
 import Navbar from "./components/NavBar";
 import Footer from "./components/Footer";
+// Trang chung
 import Home from "./pages/Home";
-import RegisterPage from "./pages/RegisterPage.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from './pages/RegisterPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
 import About from "./pages/About";
 import Partner from "./pages/Partner";
 import News from "./pages/News";
@@ -18,14 +21,35 @@ import MattressService from "./services/MattressService";
 import Information from "./order/Information";
 import HouseServiceDetail from "./order/HouseServiceDetail";
 import PaymentPage from "./order/PaymentPage";
-import BookingHistory from "./History/BookingHistory.jsx";
-import ProfilePage from "./pages/ProfilePage";
+import BookingHistory from './History/BookingHistory.jsx';
+import ProfilePage from './pages/ProfilePage';
+// Trang nhân viên
+import Timekeeping from "./personnel/Timekeeping.jsx";
+import EmployeeProfile from "./personnel/EmployeeProfile";
+// Layout nhân viên
+import EmployeeLayout from "./personnel/EmployeeLayout";
+
+function LayoutWrapper({ children }) {
+  const location = useLocation();
+  const isEmployeeRoute =
+    location.pathname.startsWith("/cham-cong") ||
+    location.pathname.startsWith("/nhan-vien") ||
+    location.pathname.startsWith("/ho-so-nhan-vien");
+
+  return (
+    <>
+      {!isEmployeeRoute && <Navbar />}
+      <main>{children}</main>
+      {!isEmployeeRoute && <Footer />}
+    </>
+  );
+}
 
 function App() {
   return (
-    <>
-      <Navbar />
+    <LayoutWrapper>
       <Routes>
+        {/* Khách hàng */}
         <Route path="/" element={<Home />} />
         <Route path="/dang-ky" element={<RegisterPage />} />
         <Route path="/dang-nhap" element={<LoginPage />} />
@@ -45,9 +69,16 @@ function App() {
         <Route path="/chi-tiet-thanh-toan" element={<PaymentPage />} />
         <Route path="/lich-su-dat-lich" element={<BookingHistory />} />
         <Route path="/ho-so-ca-nhan" element={<ProfilePage />} />
+
+        {/* Nhân viên (dùng Layout riêng có Sidebar) */}
+        <Route
+          path="/cham-cong"element={<EmployeeLayout><Timekeeping /></EmployeeLayout>}
+        />
+        <Route
+          path="/ho-so-nhan-vien"element={<EmployeeLayout><EmployeeProfile /></EmployeeLayout>}
+        />
       </Routes>
-      <Footer />
-    </>
+    </LayoutWrapper>
   );
 }
 

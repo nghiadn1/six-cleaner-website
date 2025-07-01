@@ -1,0 +1,62 @@
+    /* Timekeeping.css */
+
+    .sidebar {
+        background-color: #000;
+        width: 240px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar .btn-active {
+        background-color: #1f1f1f !important;
+        border-left: 4px solid #00ff99;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .sidebar .btn-dark {
+        background-color: transparent;
+        color: #ccc;
+        text-align: left;
+    }
+
+    .card-dark {
+        background-color: #111 !important;
+        border-radius: 16px;
+        border: none;
+    }
+
+    .card-dark .card-header {
+        background-color: #111;
+        border-bottom: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+    }
+
+    .table-dark th,
+    .table-dark td {
+        vertical-align: middle;
+        font-size: 14px;
+    }
+
+    .search-bar input {
+        background-color: #111;
+        border-radius: 999px;
+        border: 1px solid #444;
+        color: #fff;
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .search-bar button {
+        border-radius: 999px;
+        padding: 6px 12px;
+    }
+
+        .but:hover {
+            background-color: #28a745 !important;
+            /* xanh lá kiểu Bootstrap */
+            color: white !important;
+            border-color: #28a745 !important;     }
