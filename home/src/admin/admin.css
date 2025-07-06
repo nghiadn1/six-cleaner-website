@@ -1,0 +1,28 @@
+.admin-container {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    width: 240px;
+    background-color: #212529;
+    min-height: 100vh;
+}
+
+.sidebar button {
+    background-color: transparent;
+    color: #ccc;
+    font-weight: 500;
+    border: none;
+}
+
+.sidebar button:hover,
+.sidebar .btn-active {
+    background-color: #343a40;
+    color: white;
+}
+
+.stat-card {
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
