@@ -1,7 +1,10 @@
-import React from 'react';
-import { FaUser, FaLock, FaShoppingBag, FaArrowRight } from 'react-icons/fa';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { FaUser, FaLock, FaShoppingBag, FaArrowRight } from "react-icons/fa";
 
-const Sidebar = () => {
+const Sidebar = ({ active }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <style>{`
@@ -40,8 +43,12 @@ const Sidebar = () => {
       `}</style>
 
       <div className="d-flex flex-column gap-3">
-        {/* Active item */}
-        <button className="sidebar-btn active">
+        <button
+          className={`sidebar-btn ${
+            active === "Thông tin tài khoản" ? "active" : "inactive"
+          }`}
+          onClick={() => navigate("/ho-so-ca-nhan")}
+        >
           <div className="sidebar-left">
             <FaUser className="sidebar-icon" />
             <span>Thông tin tài khoản</span>
@@ -49,8 +56,12 @@ const Sidebar = () => {
           <FaArrowRight />
         </button>
 
-        {/* Inactive items */}
-        <button className="sidebar-btn inactive">
+        <button
+          className={`sidebar-btn ${
+            active === "Đổi mật khẩu" ? "active" : "inactive"
+          }`}
+          onClick={() => navigate("/doi-mat-khau")}
+        >
           <div className="sidebar-left">
             <FaLock className="sidebar-icon" />
             <span>Đổi mật khẩu</span>
@@ -58,7 +69,12 @@ const Sidebar = () => {
           <FaArrowRight />
         </button>
 
-        <button className="sidebar-btn inactive">
+        <button
+          className={`sidebar-btn ${
+            active === "Lịch sử mua hàng" ? "active" : "inactive"
+          }`}
+          onClick={() => navigate("/order-history")}
+        >
           <div className="sidebar-left">
             <FaShoppingBag className="sidebar-icon" />
             <span>Lịch sử mua hàng</span>

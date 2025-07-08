@@ -29,9 +29,10 @@ Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin/users')->group(
 
 Route::middleware(['auth:sanctum'])->prefix('profile')->group(function () {
     Route::get('/', [ProfileController::class, 'show']);
-    Route::put('/', [ProfileController::class, 'update']);
+    Route::post('/update', [ProfileController::class, 'update']); // ✅ sửa từ PUT sang POST
     Route::put('/password', [ProfileController::class, 'changePassword']);
 });
+
 
 
 Route::get('/provinces', [LocationController::class, 'getProvinces']);

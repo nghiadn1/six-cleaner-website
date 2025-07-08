@@ -1,33 +1,25 @@
-// src/pages/ProfilePage.jsx
-import React from 'react';
-import Sidebar from '../components/Sidebar';
-import ProfileForm from '../components/ProfileForm';
-import Header from '../components/NavBar';
-import Footer from '../components/Footer';
+import React from "react";
+import Sidebar from "../components/Sidebar";
+import ProfileForm from "../components/ProfileForm";
 
 const ProfilePage = () => {
   return (
-    <div style={{ width: '100vw', height: '100vh', display: 'flex', flexDirection: 'column', backgroundColor: '#f8f8f8', overflowX: 'hidden' }}> {/* Added overflowX: 'hidden' */}
-
-
-      {/* Main content */}
-      <div style={{ display: 'flex', flex: 1, width: '100%' }}>
-        {/* Sidebar */}
-        <div style={{ flex: '0 0 20%', padding: '40px' }}>
-          <Sidebar />
+    <div
+      className="container-fluid"
+      style={{ background: "#f8f9fa", minHeight: "100vh" }}
+    >
+      <div className="row">
+        {/* Sidebar bên trái */}
+        <div className="col-md-3 bg-white p-3 border-end">
+          <Sidebar active="Thông tin tài khoản" />
         </div>
 
-        {/* Profile form */}
-        <div style={{ flex: 1, padding: '40px' }}>
-          <div style={{ backgroundColor: '#fff', padding: '40px', borderRadius: '12px', display: 'flex', gap: '32px', height: '100%', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.06)' }}>
-            <div style={{ flex: 1 }}>
-              <h2 className="text-center mb-4 fw-bold">HỒ SƠ</h2>
-              <ProfileForm />
-            </div>
-          </div>
+        {/* Form bên phải */}
+        <div className="col-md-9 p-4">
+          <h4 className="fw-bold mb-4 text-center">HỒ SƠ</h4>
+          <ProfileForm />
         </div>
       </div>
-
     </div>
   );
 };
